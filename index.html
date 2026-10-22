@@ -1,151 +1,362 @@
 
 <!DOCTYPE html>
-<html lang="ary" dir="rtl">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="theme-color" content="#103c2b">
-<title>الحكم المغربي ⚽</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الحكم المغربي | Arbitre Marocain</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#f0f5f0;color:#183326;font-family:Arial,sans-serif}
-header{background:#103c2b;color:white;padding:24px 18px;border-radius:0 0 24px 24px}
-header h1{margin:0 0 8px;font-size:27px}
-header p{margin:0;color:#d3e8d9}
-main{max-width:600px;margin:auto;padding:18px}
-.card{background:white;padding:20px;border-radius:18px;box-shadow:0 3px 15px #193d2110;margin-bottom:16px}
-button{font:inherit;cursor:pointer}
-.primary{width:100%;border:0;border-radius:12px;padding:15px;background:#176b43;color:white;font-weight:bold;font-size:17px}
-.option{display:block;width:100%;text-align:right;padding:14px;margin:10px 0;border:1px solid #d6e2d8;border-radius:12px;background:white;color:#183326}
-.option:disabled{opacity:1}
-.option.chosen{border:2px solid #176b43;background:#e6f6e9}
-.option.wrong{border:2px solid #c34b4b;background:#fff0ef}
-#feedback{padding:12px;border-radius:10px;line-height:1.7;margin:12px 0}
-.small{color:#66786b;font-size:13px}
-#progress{height:8px;background:#dce8dd;border-radius:8px;overflow:hidden;margin:12px 0}
-#bar{height:100%;width:0;background:#26935b;transition:width .2s}
-.hidden{display:none}
+body{
+  margin:0;font-family:Arial,sans-serif;
+  background:#071b18;color:#f5f7f6;
+}
+header{
+  text-align:center;padding:28px 16px 20px;
+  background:linear-gradient(135deg,#064e3b,#0b2522);
+  border-bottom:3px solid #d5f45b;
+}
+header h1{margin:0 0 8px;font-size:29px}
+header p{margin:8px 0;color:#d5e5df;line-height:1.7}
+.badge{
+  display:inline-block;padding:6px 12px;
+  background:#d5f45b;color:#14251d;
+  border-radius:30px;font-weight:bold;font-size:13px;
+}
+main{max-width:720px;margin:22px auto;padding:0 14px}
+.panel{
+  background:#102b26;border:1px solid #315047;
+  border-radius:18px;padding:20px;
+}
+.row{
+  display:flex;justify-content:space-between;
+  gap:10px;align-items:center;flex-wrap:wrap;
+}
+.muted{color:#b8cdc5;font-size:14px}
+.progress{
+  height:7px;background:#29443c;border-radius:10px;
+  overflow:hidden;margin:14px 0 22px;
+}
+#bar{height:100%;width:0;background:#d5f45b;transition:.2s}
+h2{font-size:22px;line-height:1.5;margin:14px 0}
+.fr{color:#d5f45b;font-size:17px;line-height:1.6}
+.options{display:grid;gap:10px;margin-top:20px}
+.option{
+  padding:14px;border:1px solid #49645a;
+  border-radius:12px;background:#16362e;
+  color:white;text-align:left;font-size:16px;
+  line-height:1.5;cursor:pointer;
+}
+.option:hover{border-color:#d5f45b}
+.option:disabled{cursor:default;opacity:1}
+.option.correct{background:#164c34;border-color:#61db8b}
+.option.wrong{background:#592b2b;border-color:#ff8989}
+#feedback{
+  display:none;margin-top:17px;padding:14px;
+  border-radius:12px;background:#203d34;line-height:1.7;
+}
+button.mainbtn{
+  border:0;border-radius:12px;padding:13px 18px;
+  background:#d5f45b;color:#14251d;font-size:16px;
+  font-weight:bold;cursor:pointer;
+}
+button.secondary{
+  background:#29443c;color:white;
+  border:1px solid #49645a;
+}
+.actions{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.actions button{flex:1;min-width:120px}
+#result{display:none;text-align:center}
+#result h2{font-size:28px}
+.small{font-size:13px;color:#b8cdc5;line-height:1.7}
+footer{text-align:center;color:#9db6ac;padding:25px 12px;font-size:13px}
 </style>
 </head>
 <body>
 <header>
-  <h1>⚽ الحكم المغربي</h1>
-<img src="a_clean_modern_mobile_app_ui_mockup_in_a_vertical.png" alt="الحكم المغربي" style="width:100%;max-width:400px;display:block;margin:15px auto;border-radius:16px;">
- <p>اختبر راسك ف قوانين التحكيم ديال كرة القدم</p>
+  <div class="badge">⚽ QUIZ IFAB • 2026/27</div>
+  <h1>🇲🇦 الحكم المغربي</h1>
+  <p>تعلم قانون التحكيم بالدارجة والفرنسية<br>
+  Apprends les Lois du Jeu en Darija et en français</p>
 </header>
+
 <main>
-  <section id="home" class="card">
-    <h2>مرحبا بيك السي الحكم! 👋</h2>
-    <p>عندك 20 سؤال. اختار الجواب اللي كتشوفو صحيح، ومن بعد غادي يبان ليك التصحيح والنقطة ديالك.</p>
-    <p>📚 التسلل، الأخطاء، الكروت، ضربات الجزاء وقوانين اللعب.</p>
-    <p class="small">هاد الاختبار للتعلم والمراجعة، ماشي بديل على قوانين IFAB الرسمية.</p>
-    <button class="primary" onclick="start()">بدا الاختبار 🚀</button>
-  </section>
-
-  <section id="quiz" class="card hidden">
-    <div class="small" id="counter"></div>
-    <div id="progress"><div id="bar"></div></div>
+  <section class="panel" id="quiz">
+    <div class="row">
+      <span class="muted" id="counter">السؤال 1 / 20</span>
+      <span class="badge" id="score">النقط: 0</span>
+    </div>
+    <div class="progress"><div id="bar"></div></div>
+    <div class="muted" id="law">المادة 1 • Loi 1</div>
     <h2 id="question"></h2>
-    <div id="options"></div>
-    <div id="feedback" class="hidden"></div>
-    <button id="next" class="primary hidden" onclick="nextQuestion()">السؤال الموالي ←</button>
+    <div class="fr" id="questionFr"></div>
+    <div class="options" id="options"></div>
+    <div id="feedback" aria-live="polite"></div>
+    <div class="actions">
+      <button class="mainbtn" id="next" disabled onclick="nextQuestion()">السؤال التالي ←</button>
+    </div>
+    <p class="small">اختار جواب واحد. Choisis une seule réponse.</p>
   </section>
 
-  <section id="result" class="card hidden">
-    <h2>🏆 سالا الاختبار!</h2>
-    <h1 id="score"></h1>
-    <p id="message"></p>
-    <div id="review"></div>
-    <button class="primary" onclick="start()">عاود الاختبار 🔄</button>
+  <section class="panel" id="result">
+    <div class="badge">FIN DU QUIZ</div>
+    <h2>ساليتي الاختبار! ⚽</h2>
+    <p id="finalScore"></p>
+    <p id="finalMessage"></p>
+    <button class="mainbtn" onclick="restart()">عاود الاختبار / Recommencer</button>
   </section>
 </main>
+<footer>
+  Lois du Jeu IFAB • Support pédagogique bilingue<br>
+  مرجع للتعلم، ورجع دائماً للنص الرسمي ديال قوانين المسابقة.
+</footer>
 
 <script>
 const questions = [
-{q:"1. شحال من لاعب كيكون فالفريق الواحد فالبداية ديال الماتش؟",a:["7","9","11","12"],c:2,e:"الفريق كيبدأ بـ11 لاعب كحد أقصى، وواحد منهم خاصو يكون الحارس. الماتش ما يقدرش يبدا أو يكمل إلا كان شي فريق عندو أقل من 7 لاعبين."},
-{q:"2. شحال هي المدة العادية ديال الماتش؟",a:["جوج أشواط ديال 30 دقيقة","جوج أشواط ديال 45 دقيقة","شوط واحد ديال 90 دقيقة","جوج أشواط ديال 60 دقيقة"],c:1,e:"المدة العادية هي جوج أشواط ديال 45 دقيقة، مع الوقت بدل الضائع اللي كيحددو الحكم."},
-{q:"3. إمتى كنحسبو التسلل على اللاعب؟",a:["غير ملي يكون قدام الحارس","ملي يكون فموقف تسلل ويشارك ف اللعب بطريقة مخالفة","كل مرة يقرب للمرمى","ملي يلمس الكرة بيديه"],c:1,e:"موقف التسلل بوحدو ماشي مخالفة. خاص اللاعب يكون فموقف تسلل ملي زميلو كيلعب أو كيلمس الكرة، ومن بعد يتدخل فاللعب أو يأثر على الخصم."},
-{q:"4. واش ممكن يكون التسلل مباشرة من رمية تماس؟",a:["نعم ديما","لا","غير فالشوط الثاني","غير إلا كان اللاعب قريب للمرمى"],c:1,e:"ما كاينش تسلل مباشر من رمية تماس."},
-{q:"5. واش ممكن يكون التسلل مباشرة من ضربة مرمى؟",a:["نعم","لا","غير إلا كانت طويلة","غير إلا كان الحارس لمس الكرة"],c:1,e:"ما كاينش تسلل مباشر من ضربة المرمى."},
-{q:"6. شنو اللون ديال البطاقة اللي كتعني الإنذار؟",a:["الحمراء","الزرقاء","الصفراء","الخضرا"],c:2,e:"البطاقة الصفراء هي الإنذار، والحمراء كتعني الطرد."},
-{q:"7. شنو كيوقع ملي لاعب ياخذ بطاقة حمراء؟",a:["كيبدل بلاصتو مع الحارس","كيخرج من الماتش وما كيتعوضش بلاعب آخر","كيخرج 5 دقايق ويرجع","كيعطيوه ضربة جزاء"],c:1,e:"اللاعب المطرود ما كيقدرش يرجع يلعب، والفريق ما كيقدرش يعوضو بلاعب آخر."},
-{q:"8. شكون اللي عندو الحق يستعمل يديه داخل منطقة الجزاء ديال فريقو؟",a:["أي مدافع","قلب الدفاع فقط","حارس المرمى، مع وجود استثناءات فالقانون","أي لاعب واقف فالمنطقة"],c:2,e:"الحارس يقدر يلعب بيديه داخل منطقة الجزاء ديالو، ولكن كاينين استثناءات، بحال إلا توصّل بتمريرة متعمدة بالرجل من زميلو."},
-{q:"9. شنو القرار إلا مدافع دار مخالفة كتستوجب ضربة جزاء داخل منطقة الجزاء ديالو؟",a:["رمية تماس","ضربة جزاء، إلا كانت المخالفة كتستوجب ضربة حرة مباشرة","ضربة مرمى ديما","ضربة زاوية"],c:1,e:"المخالفة اللي كتستوجب ضربة حرة مباشرة داخل منطقة الجزاء ديال المدافع كتؤدي لضربة جزاء."},
-{q:"10. شحال هي المسافة بين نقطة ضربة الجزاء وخط المرمى؟",a:["9 متر","10 متر","11 متر","12 متر"],c:2,e:"نقطة ضربة الجزاء كتبعد على خط المرمى بـ11 متر."},
-{q:"11. شنو القرار إلا الكرة خرجات من خط المرمى، وآخر واحد لمسها هو مدافع، وما تسجلاتش؟",a:["ضربة مرمى","رمية تماس","ضربة زاوية","ضربة جزاء"],c:2,e:"إلا خرجات الكرة من خط المرمى وآخر من لمسها مدافع، وما كانش هدف، كتكون ضربة زاوية للفريق المهاجم."},
-{q:"12. كيفاش خاص اللاعب ينفذ رمية التماس؟",a:["بيد وحدة من الجنب","بالرجل","بجوج يديه من ورا وفوق الراس، مع احترام وضعية الرجلين","كيف ما بغا"],c:2,e:"اللاعب كيستعمل جوج يديه، والكرة كتجي من ورا وفوق الراس، مع وضعية قانونية للرجلين."},
-{q:"13. شنو هي المسافة اللي خاص الخصم يحترم فركلة البداية؟",a:["3 متر","5 متر","9.15 متر","15 متر"],c:2,e:"اللاعبين الخصوم خاصهم يبقاو على الأقل 9.15 متر من الكرة حتى تدخل للعب."},
-{q:"14. واش الحكم يقدر يخلي اللعب مستمر إلا كان الفريق المتضرر عندو فرصة مفيدة؟",a:["لا، خاصو يوقف ديما","نعم، هادي هي إتاحة الفرصة","غير فآخر 5 دقايق","غير إلا طلب المدرب"],c:1,e:"الحكم يقدر يطبق إتاحة الفرصة إلا كان استمرار اللعب غادي يفيد الفريق المتضرر، ويرجع يعاقب المخالفة إلا ما تحققاتش الفائدة المتوقعة حسب القانون."},
-{q:"15. شنو القرار إلا لاعب لمس الكرة بيديه بشكل مخالف داخل الملعب؟",a:["الحكم كيتجاهلها ديما","كتتحدد العقوبة حسب الحالة وقانون لمس الكرة باليد","هدف للفريق الآخر ديما","رمية تماس ديما"],c:1,e:"ماشي أي لمس لليد مخالفة. الحكم كيشوف واش كانت حركة متعمدة أو وضعية اليد كتخلي الجسم أكبر بطريقة غير مبررة، حسب القانون."},
-{q:"16. إمتى الحكم كيقدر يعلن ضربة حرة مباشرة؟",a:["فأي خطأ حتى إلا ما كانش مخالفة","فالمخالفات اللي كينص عليها القانون كضربة حرة مباشرة","غير ملي الكرة تخرج","غير ملي الحارس يشد الكرة"],c:1,e:"الضربة الحرة المباشرة كتتعطى على المخالفات المحددة فالقانون، بحال بعض حالات الدفع أو العرقلة أو المسك."},
-{q:"17. واش الهدف ممكن يتحسب مباشرة من ضربة البداية؟",a:["لا، مستحيل","نعم، ممكن يتسجل مباشرة فمرمى الخصم","غير فماتشات الكأس","غير فالشوط الثاني"],c:1,e:"يمكن تسجيل هدف مباشرة فمرمى الخصم من ضربة البداية. إلا دخلات الكرة مباشرة فمرمى المنفذ، كتكون ضربة زاوية للخصم."},
-{q:"18. شنو القرار إلا الكرة دخلات كاملة لداخل المرمى بين القائمين وتحت العارضة، وما كانت حتى مخالفة؟",a:["هدف","ضربة زاوية","تسلل ديما","رمية تماس"],c:0,e:"كيكون هدف ملي الكرة كتدوز كاملة خط المرمى بين القائمين وتحت العارضة، مع احترام شروط القانون."},
-{q:"19. شكون المسؤول على تطبيق قوانين اللعب داخل الماتش؟",a:["الجمهور","الحكم","قائد الفريق بوحدو","المعلق"],c:1,e:"الحكم هو المسؤول على تطبيق قوانين اللعب وتدبير الماتش حسب صلاحياتو."},
-{q:"20. شنو أحسن مرجع باش تراجع قوانين التحكيم الرسمية؟",a:["التعليقات فمواقع التواصل فقط","قوانين IFAB الرسمية","آراء الجمهور فقط","أي فيديو بلا مصدر"],c:1,e:"المرجع الأساسي لقوانين كرة القدم هو IFAB، وخصك تراجع النسخة الرسمية وأي توجيهات محلية معتمدة."}
+{
+ law:"المادة 1 • Loi 1 — Terrain",
+ q:"شحال خاص يكون طول خط التماس فملعب كرة القدم العادي؟",
+ fr:"Quelle est la longueur réglementaire de la ligne de touche pour un match ordinaire ?",
+ a:["90 حتى 120 متر / 90 à 120 m","50 حتى 70 متر / 50 à 70 m","120 حتى 150 متر / 120 à 150 m"],
+ c:0,
+ why:"خط التماس خاصو يكون بين 90 و120 متر فالمباريات العادية. / La ligne de touche mesure de 90 à 120 m."
+},
+{
+ law:"المادة 1 • Loi 1 — Terrain international",
+ q:"فماتش دولي، شحال خاص يكون عرض الملعب؟",
+ fr:"Pour un match international, quelle est la largeur du terrain ?",
+ a:["45–60 m","64–75 m","80–90 m"],
+ c:1,
+ why:"عرض الملعب الدولي بين 64 و75 متر. / La largeur est comprise entre 64 et 75 m."
+},
+{
+ law:"المادة 2 • Loi 2 — Ballon",
+ q:"شحال خاص يكون وزن الكرة فبداية الماتش؟",
+ fr:"Quel doit être le poids du ballon au début du match ?",
+ a:["300–350 g","410–450 g","500–550 g"],
+ c:1,
+ why:"الوزن القانوني فبداية الماتش بين 410 و450 غرام. / Le ballon pèse entre 410 et 450 g."
+},
+{
+ law:"المادة 2 • Loi 2 — Ballon",
+ q:"شحال خاص يكون محيط الكرة القانونية؟",
+ fr:"Quelle est la circonférence réglementaire du ballon ?",
+ a:["58–62 cm","68–70 cm","75–80 cm"],
+ c:1,
+ why:"محيط الكرة خاصو يكون بين 68 و70 سنتيمتر. / La circonférence est de 68 à 70 cm."
+},
+{
+ law:"المادة 3 • Loi 3 — Joueurs",
+ q:"شحال هو العدد الأقصى ديال اللاعبين لكل فريق فالميدان؟",
+ fr:"Quel est le nombre maximal de joueurs par équipe sur le terrain ?",
+ a:["10 لاعبين / 10 joueurs","11 لاعب، منهم الحارس / 11 dont un gardien","12 لاعب / 12 joueurs"],
+ c:1,
+ why:"كل فريق يقدر يكون عندو 11 لاعب كحد أقصى، ومنهم حارس مرمى. / Chaque équipe peut avoir au maximum 11 joueurs, dont un gardien."
+},
+{
+ law:"المادة 3 • Loi 3 — Minimum de joueurs",
+ q:"حسب القانون العام، شحال أقل عدد ديال اللاعبين باش الماتش يبدا أو يكمل؟",
+ fr:"Quel est le minimum de joueurs requis pour commencer ou poursuivre un match ?",
+ a:["5 لاعبين / 5 joueurs","7 لاعبين / 7 joueurs","9 لاعبين / 9 joueurs"],
+ c:1,
+ why:"الماتش ما يقدرش يبدا أو يكمل إلا كان شي فريق عندو أقل من 7 لاعبين، مع مراعاة الحالات الخاصة المنصوص عليها. / Un match ne peut commencer ou continuer si une équipe compte moins de 7 joueurs, sous réserve des dispositions particulières."
+},
+{
+ law:"المادة 4 • Loi 4 — Équipement",
+ q:"واش اللاعب مسموح ليه يلعب بالحلي بحال الخواتم والسلاسل؟",
+ fr:"Un joueur peut-il porter des bijoux pendant le match ?",
+ a:["نعم، إلا كانو صغار / Oui, s'ils sont petits","لا، الحلي ممنوعة / Non, les bijoux sont interdits","نعم، إلا غطاهم / Oui, s'ils sont couverts"],
+ c:1,
+ why:"الحلي ممنوعة، وما كافيش غير تغطيها. / Les bijoux sont interdits et ne peuvent pas simplement être recouverts."
+},
+{
+ law:"المادة 5 • Loi 5 — Arbitre",
+ q:"شكون المسؤول على تطبيق قوانين اللعب وسط الماتش؟",
+ fr:"Qui est chargé de faire appliquer les Lois du Jeu pendant le match ?",
+ a:["المدرب / L'entraîneur","الحكم / L'arbitre","قائد الفريق / Le capitaine"],
+ c:1,
+ why:"الحكم هو المسؤول على تطبيق قوانين اللعب. / L'arbitre veille à l'application des Lois du Jeu."
+},
+{
+ law:"المادة 5 • Loi 5 — Décisions",
+ q:"واش قرارات الحكم المتعلقة بالوقائع ديال اللعب نهائية؟",
+ fr:"Les décisions de l'arbitre sur les faits de jeu sont-elles définitives ?",
+ a:["نعم، حسب القانون / Oui, selon les Lois","لا، المدرب يقدر يبدلها / Non, l'entraîneur peut les changer","القائد هو اللي كيقرر / Le capitaine décide"],
+ c:0,
+ why:"قرارات الحكم المتعلقة بالوقائع ديال اللعب، بما فيها احتساب الهدف، نهائية وفق القوانين. / Les décisions de l'arbitre sur les faits de jeu sont définitives selon les Lois."
+},
+{
+ law:"المادة 7 • Loi 7 — Durée",
+ q:"شحال كيدوم كل شوط فالماتش العادي؟",
+ fr:"Quelle est la durée de chaque période d'un match normal ?",
+ a:["30 دقيقة / 30 minutes","40 دقيقة / 40 minutes","45 دقيقة / 45 minutes"],
+ c:2,
+ why:"كل شوط كيدوم 45 دقيقة، ويمكن يزيد الحكم الوقت بدل الضائع. / Chaque période dure 45 minutes, auxquelles s'ajoute le temps additionnel."
+},
+{
+ law:"المادة 8 • Loi 8 — Coup d'envoi",
+ q:"واش ممكن يتسجل هدف مباشرة من ضربة البداية ضد الفريق المنافس؟",
+ fr:"Peut-on marquer directement contre l'adversaire sur un coup d'envoi ?",
+ a:["نعم / Oui","لا، خاص لاعب آخر يلمس الكرة / Non, un autre joueur doit toucher le ballon","غير فالشوط الثاني / Seulement en seconde période"],
+ c:0,
+ why:"يمكن تسجيل هدف مباشرة ضد الفريق المنافس من ضربة البداية. / Un but peut être marqué directement contre l'adversaire sur un coup d'envoi."
+},
+{
+ law:"المادة 9 • Loi 9 — Ballon en jeu",
+ q:"إمتى كتعتبر الكرة خرجات من اللعب؟",
+ fr:"Quand le ballon est-il considéré hors du jeu ?",
+ a:["إلا تجاوز الخط كامل / Lorsqu'il a entièrement franchi la ligne","إلا لمس الخط / Dès qu'il touche la ligne","إلا خرج نصفو / Dès que la moitié est sortie"],
+ c:0,
+ why:"الكرة كتكون خارج اللعب ملي كتدوز الخط كامل، فوق الأرض أو فالهواء. / Le ballon est hors du jeu lorsqu'il a entièrement franchi la ligne, au sol ou en l'air."
+},
+{
+ law:"المادة 10 • Loi 10 — But",
+ q:"فاش كيتحسب الهدف؟",
+ fr:"Quand un but est-il accordé ?",
+ a:["إلا لمس الكرة الشبكة / Quand le ballon touche le filet","إلا دازت الكرة كاملة خط المرمى بين القائمين وتحت العارضة، بلا مخالفة / Quand le ballon franchit entièrement la ligne entre les poteaux et sous la barre, sans infraction","إلا دخل نصف الكرة / Quand la moitié du ballon entre"],
+ c:1,
+ why:"خاص الكرة كاملة تدوز خط المرمى بين القائمين وتحت العارضة، وما تكون حتى مخالفة من الفريق اللي سجل. / Le ballon doit entièrement franchir la ligne entre les poteaux et sous la barre, sans infraction de l'équipe qui marque."
+},
+{
+ law:"المادة 11 • Loi 11 — Hors-jeu",
+ q:"واش اللاعب كيرتكب مخالفة غير حيث واقف فموقف تسلل؟",
+ fr:"Un joueur commet-il une infraction simplement parce qu'il est en position de hors-jeu ?",
+ a:["نعم ديما / Oui, toujours","لا، خاصو يشارك فاللعب بطريقة يعاقب عليها القانون / Non, il doit prendre part au jeu de manière sanctionnable","غير إلا كان الحارس بعيد / Seulement si le gardien est loin"],
+ c:1,
+ why:"موقف التسلل بوحدو ماشي مخالفة؛ كتكون المخالفة إلا تدخل اللاعب فاللعب حسب المادة 11. / La position de hors-jeu seule n'est pas une infraction : le joueur doit intervenir dans le jeu comme prévu par la Loi 11."
+},
+{
+ law:"المادة 11 • Loi 11 — Remises en jeu",
+ q:"واش ممكن تكون مخالفة تسلل مباشرة من ضربة مرمى؟",
+ fr:"Peut-on être directement sanctionné pour hors-jeu sur un coup de pied de but ?",
+ a:["نعم / Oui","لا / Non","غير إلا كانت الكرة طويلة / Seulement sur un long ballon"],
+ c:1,
+ why:"ما كايناش مخالفة تسلل مباشرة إلا توصل اللاعب بالكرة مباشرة من ضربة مرمى أو رمية تماس أو ضربة زاوية. / Il n'y a pas d'infraction de hors-jeu lorsqu'un joueur reçoit directement le ballon sur un coup de pied de but, une rentrée de touche ou un corner."
+},
+{
+ law:"المادة 12 • Loi 12 — Fautes",
+ q:"شنو العقوبة الانضباطية المعتادة على تدخل متهور (reckless)؟",
+ fr:"Quelle sanction disciplinaire s'applique normalement à un tacle effectué de manière inconsidérée (reckless) ?",
+ a:["إنذار ببطاقة صفراء / Avertissement, carton jaune","طرد مباشر فكل الحالات / Expulsion directe dans tous les cas","ما كاين حتى إجراء / Aucune sanction"],
+ c:0,
+ why:"التدخل المتهور كيستوجب الإنذار. / Un tacle effectué de manière inconsidérée entraîne un avertissement."
+},
+{
+ law:"المادة 12 • Loi 12 — Force excessive",
+ q:"شنو كيكون القرار إلا استعمل لاعب قوة مفرطة ضد منافس وهو كيتنافس على الكرة؟",
+ fr:"Que doit faire l'arbitre si un joueur emploie une force excessive contre un adversaire en disputant le ballon ?",
+ a:["غير إنذار / Avertissement seulement","طرد ببطاقة حمراء / Exclusion, carton rouge","اللعب يستمر ديما / Toujours laisser jouer"],
+ c:1,
+ why:"استعمال القوة المفرطة كيتعتبر لعب عنيف وكيستوجب الطرد. / L'emploi d'une force excessive est assimilé à un acte de brutalité et entraîne une exclusion."
+},
+{
+ law:"المادة 13 • Loi 13 — Coups francs",
+ q:"شنو الفرق الأساسي بين الضربة الحرة المباشرة وغير المباشرة؟",
+ fr:"Quelle est la différence essentielle entre un coup franc direct et indirect ?",
+ a:["المباشرة تقدر تدخل مباشرة للمرمى، وغير المباشرة خاص الكرة تلمس لاعب آخر قبل الهدف / Le direct peut entrer directement dans le but, l'indirect doit toucher un autre joueur avant d'être marqué","ما كاين حتى فرق / Aucune différence","غير لون الصافرة / Seulement la couleur du sifflet"],
+ c:0,
+ why:"فالضربة الحرة غير المباشرة خاص الكرة تلمس لاعب آخر قبل ما يتسجل الهدف. / Sur un coup franc indirect, le ballon doit toucher un autre joueur avant qu'un but puisse être accordé."
+},
+{
+ law:"المادة 14 • Loi 14 — Penalty",
+ q:"شحال كيبعد موضع ضربة الجزاء على خط المرمى؟",
+ fr:"À quelle distance du but se trouve le point de penalty ?",
+ a:["9.15 متر / 9,15 m","11 متر / 11 m","12 متر / 12 m"],
+ c:1,
+ why:"موضع ضربة الجزاء كيبعد 11 متر على خط المرمى. / Le point de penalty se trouve à 11 m de la ligne de but."
+},
+{
+ law:"المادة 15 • Loi 15 — Rentrée de touche",
+ q:"كيفاش خاص اللاعب ينفذ رمية التماس؟",
+ fr:"Comment une rentrée de touche doit-elle être effectuée ?",
+ a:["بيد وحدة من الجانب / D'une seule main, sur le côté","بالجوج يدين من وراء وفوق الراس، والجزء المناسب من القدمين على الخط أو خارجه / Avec les deux mains, derrière et au-dessus de la tête, les pieds selon les exigences de la Loi","بالرجل / Avec le pied"],
+ c:1,
+ why:"رمية التماس كتتنفذ باليدين من وراء وفوق الراس، مع احترام وضعية القدمين حسب المادة 15. / La rentrée de touche se fait avec les deux mains, depuis l'arrière et au-dessus de la tête, en respectant la position des pieds prévue par la Loi 15."
+},
+{
+ law:"المادة 17 • Loi 17 — Corner",
+ q:"الكرة دازت كاملة خط المرمى وما تسجلش هدف، وآخر واحد لمسها هو لاعب من الدفاع. شنو القرار؟",
+ fr:"Le ballon franchit entièrement la ligne de but sans qu'un but soit marqué, après avoir été touché en dernier par un défenseur. Quelle reprise ?",
+ a:["ضربة مرمى / Coup de pied de but","ضربة زاوية للفريق المنافس / Corner pour l'équipe adverse","رمية تماس / Rentrée de touche"],
+ c:1,
+ why:"إلا آخر واحد لمس الكرة هو لاعب من الدفاع، كتتعطى ضربة زاوية للفريق المنافس، إلا ما كانش هدف. / Si le dernier joueur à toucher le ballon est un défenseur, un corner est accordé à l'équipe adverse, sauf si un but est marqué."
+}
 ];
 
-let index=0, score=0, answers=[], locked=false;
-function start(){
- index=0;score=0;answers=[];locked=false;
- document.getElementById('home').classList.add('hidden');
- document.getElementById('result').classList.add('hidden');
- document.getElementById('quiz').classList.remove('hidden');
- render();
+let current=0;
+let points=0;
+let answered=false;
+
+function showQuestion(){
+  answered=false;
+  const q=questions[current];
+  document.getElementById("counter").textContent=`السؤال ${current+1} / ${questions.length}`;
+  document.getElementById("score").textContent=`النقط: ${points}`;
+  document.getElementById("bar").style.width=(current/questions.length*100)+"%";
+  document.getElementById("law").textContent=q.law;
+  document.getElementById("question").textContent=q.q;
+  document.getElementById("questionFr").textContent=q.fr;
+  document.getElementById("feedback").style.display="none";
+  document.getElementById("next").disabled=true;
+  document.getElementById("next").textContent=current===questions.length-1?"شوف النتيجة / Résultat":"السؤال التالي ←";
+  const box=document.getElementById("options");
+  box.innerHTML="";
+  q.a.forEach((answer,i)=>{
+    const btn=document.createElement("button");
+    btn.className="option";
+    btn.textContent=String.fromCharCode(65+i)+". "+answer;
+    btn.onclick=()=>chooseAnswer(i);
+    box.appendChild(btn);
+  });
 }
-function render(){
- locked=false;
- const q=questions[index];
- document.getElementById('counter').textContent=`السؤال ${index+1} من ${questions.length}`;
- document.getElementById('bar').style.width=(index/questions.length*100)+'%';
- document.getElementById('question').textContent=q.q;
- document.getElementById('options').innerHTML='';
- document.getElementById('feedback').classList.add('hidden');
- document.getElementById('next').classList.add('hidden');
- q.a.forEach((option,i)=>{
-  const b=document.createElement('button');
-  b.className='option';b.textContent=option;
-  b.onclick=()=>choose(i);
-  document.getElementById('options').appendChild(b);
- });
+
+function chooseAnswer(index){
+  if(answered)return;
+  answered=true;
+  const q=questions[current];
+  const buttons=document.querySelectorAll(".option");
+  buttons.forEach((b,i)=>{
+    b.disabled=true;
+    if(i===q.c)b.classList.add("correct");
+    if(i===index && index!==q.c)b.classList.add("wrong");
+  });
+  const correct=index===q.c;
+  if(correct)points++;
+  const fb=document.getElementById("feedback");
+  fb.style.display="block";
+  fb.innerHTML=(correct?"✅ صحيح! Bonne réponse !":"❌ ماشي هادي. Mauvaise réponse.")+
+    "<br><br>"+q.why;
+  document.getElementById("score").textContent=`النقط: ${points}`;
+  document.getElementById("next").disabled=false;
 }
-function choose(n){
- if(locked)return;
- locked=true;
- const q=questions[index];
- const buttons=[...document.querySelectorAll('.option')];
- buttons.forEach((b,i)=>{
-  b.disabled=true;
-  if(i===q.c)b.classList.add('chosen');
-  if(i===n&&n!==q.c)b.classList.add('wrong');
- });
- const correct=n===q.c;
- if(correct)score++;
- answers.push({q:q.q,correct,chosen:q.a[n],right:q.a[q.c]});
- const fb=document.getElementById('feedback');
- fb.classList.remove('hidden');
- fb.style.background=correct?'#e6f6e9':'#fff0ef';
- fb.innerHTML=`<b>${correct?'✅ صحيح!':'❌ ماشي هادا هو الجواب الصحيح'}</b><br>${q.e}`;
- document.getElementById('next').classList.remove('hidden');
- document.getElementById('next').textContent=index===questions.length-1?'شوف النتيجة 🏆':'السؤال الموالي ←';
-}
+
 function nextQuestion(){
- index++;
- if(index<questions.length){render();return;}
- document.getElementById('quiz').classList.add('hidden');
- document.getElementById('result').classList.remove('hidden');
- document.getElementById('bar').style.width='100%';
- document.getElementById('score').textContent=score+' / 20';
- document.getElementById('message').textContent=
- score>=18?'ممتاز! باين عليك مراجع القوانين مزيان.':
- score>=14?'مزيان! باقي غير شوية ديال المراجعة.':
- score>=10?'بداية مزيانة، راجع الأجوبة وجرب مرة أخرى.':
- 'ماشي مشكل، راجع قوانين IFAB وعاود الاختبار.';
- document.getElementById('review').innerHTML=
- '<h3>الأجوبة اللي خاصك تراجع:</h3>'+
- answers.filter(a=>!a.correct).map(a=>
- `<p><b>${a.q}</b><br>الجواب الصحيح: ${a.right}</p>`
- ).join('') || '<p>برافو! جاوبتي على جميع الأسئلة بشكل صحيح.</p>';
+  if(!answered)return;
+  current++;
+  if(current>=questions.length){
+    document.getElementById("quiz").style.display="none";
+    document.getElementById("result").style.display="block";
+    document.getElementById("bar").style.width="100%";
+    document.getElementById("finalScore").textContent=
+      `النتيجة ديالك: ${points} / ${questions.length}`;
+    let msg;
+    if(points>=18)msg="ممتاز! Très bon travail !";
+    else if(points>=14)msg="مزيان بزاف! Continue à réviser les Lois du Jeu.";
+    else if(points>=10)msg="مزيان، زيد راجع المواد وغادي تتحسن.";
+    else msg="بداية مزيانة! راجع القوانين وعاود الاختبار.";
+    document.getElementById("finalMessage").textContent=msg;
+    return;
+  }
+  showQuestion();
 }
+
+function restart(){
+  current=0;points=0;answered=false;
+  document.getElementById("result").style.display="none";
+  document.getElementById("quiz").style.display="block";
+  showQuestion();
+}
+showQuestion();
 </script>
 </body>
 </html>
