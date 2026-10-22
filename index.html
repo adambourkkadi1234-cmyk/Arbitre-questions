@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="ary" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#103c2b">
+<title>الحكم المغربي ⚽</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f0f5f0;color:#183326;font-family:Arial,sans-serif}
+header{background:#103c2b;color:white;padding:24px 18px;border-radius:0 0 24px 24px}
+header h1{margin:0 0 8px;font-size:27px}
+header p{margin:0;color:#d3e8d9}
+main{max-width:600px;margin:auto;padding:18px}
+.card{background:white;padding:20px;border-radius:18px;box-shadow:0 3px 15px #193d2110;margin-bottom:16px}
+button{font:inherit;cursor:pointer}
+.primary{width:100%;border:0;border-radius:12px;padding:15px;background:#176b43;color:white;font-weight:bold;font-size:17px}
+.option{display:block;width:100%;text-align:right;padding:14px;margin:10px 0;border:1px solid #d6e2d8;border-radius:12px;background:white;color:#183326}
+.option:disabled{opacity:1}
+.option.chosen{border:2px solid #176b43;background:#e6f6e9}
+.option.wrong{border:2px solid #c34b4b;background:#fff0ef}
+#feedback{padding:12px;border-radius:10px;line-height:1.7;margin:12px 0}
+.small{color:#66786b;font-size:13px}
+#progress{height:8px;background:#dce8dd;border-radius:8px;overflow:hidden;margin:12px 0}
+#bar{height:100%;width:0;background:#26935b;transition:width .2s}
+.hidden{display:none}
+</style>
+</head>
+<body>
+<header>
+  <h1>⚽ الحكم المغربي</h1>
+  <p>اختبر راسك فقوانين التحكيم ديال كرة القدم</p>
+</header>
+<main>
+  <section id="home" class="card">
+    <h2>مرحبا بيك السي الحكم! 👋</h2>
+    <p>عندك 20 سؤال. اختار الجواب اللي كتشوفو صحيح، ومن بعد غادي يبان ليك التصحيح والنقطة ديالك.</p>
+    <p>📚 التسلل، الأخطاء، الكروت، ضربات الجزاء وقوانين اللعب.</p>
+    <p class="small">هاد الاختبار للتعلم والمراجعة، ماشي بديل على قوانين IFAB الرسمية.</p>
+    <button class="primary" onclick="start()">بدا الاختبار 🚀</button>
+  </section>
+
+  <section id="quiz" class="card hidden">
+    <div class="small" id="counter"></div>
+    <div id="progress"><div id="bar"></div></div>
+    <h2 id="question"></h2>
+    <div id="options"></div>
+    <div id="feedback" class="hidden"></div>
+    <button id="next" class="primary hidden" onclick="nextQuestion()">السؤال الموالي ←</button>
+  </section>
+
+  <section id="result" class="card hidden">
+    <h2>🏆 سالا الاختبار!</h2>
+    <h1 id="score"></h1>
+    <p id="message"></p>
+    <div id="review"></div>
+    <button class="primary" onclick="start()">عاود الاختبار 🔄</button>
+  </section>
+</main>
+
+<script>
+const questions = [
+{q:"1. شحال من لاعب كيكون فالفريق الواحد فالبداية ديال الماتش؟",a:["7","9","11","12"],c:2,e:"الفريق كيبدأ بـ11 لاعب كحد أقصى، وواحد منهم خاصو يكون الحارس. الماتش ما يقدرش يبدا أو يكمل إلا كان شي فريق عندو أقل من 7 لاعبين."},
+{q:"2. شحال هي المدة العادية ديال الماتش؟",a:["جوج أشواط ديال 30 دقيقة","جوج أشواط ديال 45 دقيقة","شوط واحد ديال 90 دقيقة","جوج أشواط ديال 60 دقيقة"],c:1,e:"المدة العادية هي جوج أشواط ديال 45 دقيقة، مع الوقت بدل الضائع اللي كيحددو الحكم."},
+{q:"3. إمتى كنحسبو التسلل على اللاعب؟",a:["غير ملي يكون قدام الحارس","ملي يكون فموقف تسلل ويشارك ف اللعب بطريقة مخالفة","كل مرة يقرب للمرمى","ملي يلمس الكرة بيديه"],c:1,e:"موقف التسلل بوحدو ماشي مخالفة. خاص اللاعب يكون فموقف تسلل ملي زميلو كيلعب أو كيلمس الكرة، ومن بعد يتدخل فاللعب أو يأثر على الخصم."},
+{q:"4. واش ممكن يكون التسلل مباشرة من رمية تماس؟",a:["نعم ديما","لا","غير فالشوط الثاني","غير إلا كان اللاعب قريب للمرمى"],c:1,e:"ما كاينش تسلل مباشر من رمية تماس."},
+{q:"5. واش ممكن يكون التسلل مباشرة من ضربة مرمى؟",a:["نعم","لا","غير إلا كانت طويلة","غير إلا كان الحارس لمس الكرة"],c:1,e:"ما كاينش تسلل مباشر من ضربة المرمى."},
+{q:"6. شنو اللون ديال البطاقة اللي كتعني الإنذار؟",a:["الحمراء","الزرقاء","الصفراء","الخضرا"],c:2,e:"البطاقة الصفراء هي الإنذار، والحمراء كتعني الطرد."},
+{q:"7. شنو كيوقع ملي لاعب ياخذ بطاقة حمراء؟",a:["كيبدل بلاصتو مع الحارس","كيخرج من الماتش وما كيتعوضش بلاعب آخر","كيخرج 5 دقايق ويرجع","كيعطيوه ضربة جزاء"],c:1,e:"اللاعب المطرود ما كيقدرش يرجع يلعب، والفريق ما كيقدرش يعوضو بلاعب آخر."},
+{q:"8. شكون اللي عندو الحق يستعمل يديه داخل منطقة الجزاء ديال فريقو؟",a:["أي مدافع","قلب الدفاع فقط","حارس المرمى، مع وجود استثناءات فالقانون","أي لاعب واقف فالمنطقة"],c:2,e:"الحارس يقدر يلعب بيديه داخل منطقة الجزاء ديالو، ولكن كاينين استثناءات، بحال إلا توصّل بتمريرة متعمدة بالرجل من زميلو."},
+{q:"9. شنو القرار إلا مدافع دار مخالفة كتستوجب ضربة جزاء داخل منطقة الجزاء ديالو؟",a:["رمية تماس","ضربة جزاء، إلا كانت المخالفة كتستوجب ضربة حرة مباشرة","ضربة مرمى ديما","ضربة زاوية"],c:1,e:"المخالفة اللي كتستوجب ضربة حرة مباشرة داخل منطقة الجزاء ديال المدافع كتؤدي لضربة جزاء."},
+{q:"10. شحال هي المسافة بين نقطة ضربة الجزاء وخط المرمى؟",a:["9 متر","10 متر","11 متر","12 متر"],c:2,e:"نقطة ضربة الجزاء كتبعد على خط المرمى بـ11 متر."},
+{q:"11. شنو القرار إلا الكرة خرجات من خط المرمى، وآخر واحد لمسها هو مدافع، وما تسجلاتش؟",a:["ضربة مرمى","رمية تماس","ضربة زاوية","ضربة جزاء"],c:2,e:"إلا خرجات الكرة من خط المرمى وآخر من لمسها مدافع، وما كانش هدف، كتكون ضربة زاوية للفريق المهاجم."},
+{q:"12. كيفاش خاص اللاعب ينفذ رمية التماس؟",a:["بيد وحدة من الجنب","بالرجل","بجوج يديه من ورا وفوق الراس، مع احترام وضعية الرجلين","كيف ما بغا"],c:2,e:"اللاعب كيستعمل جوج يديه، والكرة كتجي من ورا وفوق الراس، مع وضعية قانونية للرجلين."},
+{q:"13. شنو هي المسافة اللي خاص الخصم يحترم فركلة البداية؟",a:["3 متر","5 متر","9.15 متر","15 متر"],c:2,e:"اللاعبين الخصوم خاصهم يبقاو على الأقل 9.15 متر من الكرة حتى تدخل للعب."},
+{q:"14. واش الحكم يقدر يخلي اللعب مستمر إلا كان الفريق المتضرر عندو فرصة مفيدة؟",a:["لا، خاصو يوقف ديما","نعم، هادي هي إتاحة الفرصة","غير فآخر 5 دقايق","غير إلا طلب المدرب"],c:1,e:"الحكم يقدر يطبق إتاحة الفرصة إلا كان استمرار اللعب غادي يفيد الفريق المتضرر، ويرجع يعاقب المخالفة إلا ما تحققاتش الفائدة المتوقعة حسب القانون."},
+{q:"15. شنو القرار إلا لاعب لمس الكرة بيديه بشكل مخالف داخل الملعب؟",a:["الحكم كيتجاهلها ديما","كتتحدد العقوبة حسب الحالة وقانون لمس الكرة باليد","هدف للفريق الآخر ديما","رمية تماس ديما"],c:1,e:"ماشي أي لمس لليد مخالفة. الحكم كيشوف واش كانت حركة متعمدة أو وضعية اليد كتخلي الجسم أكبر بطريقة غير مبررة، حسب القانون."},
+{q:"16. إمتى الحكم كيقدر يعلن ضربة حرة مباشرة؟",a:["فأي خطأ حتى إلا ما كانش مخالفة","فالمخالفات اللي كينص عليها القانون كضربة حرة مباشرة","غير ملي الكرة تخرج","غير ملي الحارس يشد الكرة"],c:1,e:"الضربة الحرة المباشرة كتتعطى على المخالفات المحددة فالقانون، بحال بعض حالات الدفع أو العرقلة أو المسك."},
+{q:"17. واش الهدف ممكن يتحسب مباشرة من ضربة البداية؟",a:["لا، مستحيل","نعم، ممكن يتسجل مباشرة فمرمى الخصم","غير فماتشات الكأس","غير فالشوط الثاني"],c:1,e:"يمكن تسجيل هدف مباشرة فمرمى الخصم من ضربة البداية. إلا دخلات الكرة مباشرة فمرمى المنفذ، كتكون ضربة زاوية للخصم."},
+{q:"18. شنو القرار إلا الكرة دخلات كاملة لداخل المرمى بين القائمين وتحت العارضة، وما كانت حتى مخالفة؟",a:["هدف","ضربة زاوية","تسلل ديما","رمية تماس"],c:0,e:"كيكون هدف ملي الكرة كتدوز كاملة خط المرمى بين القائمين وتحت العارضة، مع احترام شروط القانون."},
+{q:"19. شكون المسؤول على تطبيق قوانين اللعب داخل الماتش؟",a:["الجمهور","الحكم","قائد الفريق بوحدو","المعلق"],c:1,e:"الحكم هو المسؤول على تطبيق قوانين اللعب وتدبير الماتش حسب صلاحياتو."},
+{q:"20. شنو أحسن مرجع باش تراجع قوانين التحكيم الرسمية؟",a:["التعليقات فمواقع التواصل فقط","قوانين IFAB الرسمية","آراء الجمهور فقط","أي فيديو بلا مصدر"],c:1,e:"المرجع الأساسي لقوانين كرة القدم هو IFAB، وخصك تراجع النسخة الرسمية وأي توجيهات محلية معتمدة."}
+];
+
+let index=0, score=0, answers=[], locked=false;
+function start(){
+ index=0;score=0;answers=[];locked=false;
+ document.getElementById('home').classList.add('hidden');
+ document.getElementById('result').classList.add('hidden');
+ document.getElementById('quiz').classList.remove('hidden');
+ render();
+}
+function render(){
+ locked=false;
+ const q=questions[index];
+ document.getElementById('counter').textContent=`السؤال ${index+1} من ${questions.length}`;
+ document.getElementById('bar').style.width=(index/questions.length*100)+'%';
+ document.getElementById('question').textContent=q.q;
+ document.getElementById('options').innerHTML='';
+ document.getElementById('feedback').classList.add('hidden');
+ document.getElementById('next').classList.add('hidden');
+ q.a.forEach((option,i)=>{
+  const b=document.createElement('button');
+  b.className='option';b.textContent=option;
+  b.onclick=()=>choose(i);
+  document.getElementById('options').appendChild(b);
+ });
+}
+function choose(n){
+ if(locked)return;
+ locked=true;
+ const q=questions[index];
+ const buttons=[...document.querySelectorAll('.option')];
+ buttons.forEach((b,i)=>{
+  b.disabled=true;
+  if(i===q.c)b.classList.add('chosen');
+  if(i===n&&n!==q.c)b.classList.add('wrong');
+ });
+ const correct=n===q.c;
+ if(correct)score++;
+ answers.push({q:q.q,correct,chosen:q.a[n],right:q.a[q.c]});
+ const fb=document.getElementById('feedback');
+ fb.classList.remove('hidden');
+ fb.style.background=correct?'#e6f6e9':'#fff0ef';
+ fb.innerHTML=`<b>${correct?'✅ صحيح!':'❌ ماشي هادا هو الجواب الصحيح'}</b><br>${q.e}`;
+ document.getElementById('next').classList.remove('hidden');
+ document.getElementById('next').textContent=index===questions.length-1?'شوف النتيجة 🏆':'السؤال الموالي ←';
+}
+function nextQuestion(){
+ index++;
+ if(index<questions.length){render();return;}
+ document.getElementById('quiz').classList.add('hidden');
+ document.getElementById('result').classList.remove('hidden');
+ document.getElementById('bar').style.width='100%';
+ document.getElementById('score').textContent=score+' / 20';
+ document.getElementById('message').textContent=
+ score>=18?'ممتاز! باين عليك مراجع القوانين مزيان.':
+ score>=14?'مزيان! باقي غير شوية ديال المراجعة.':
+ score>=10?'بداية مزيانة، راجع الأجوبة وجرب مرة أخرى.':
+ 'ماشي مشكل، راجع قوانين IFAB وعاود الاختبار.';
+ document.getElementById('review').innerHTML=
+ '<h3>الأجوبة اللي خاصك تراجع:</h3>'+
+ answers.filter(a=>!a.correct).map(a=>
+ `<p><b>${a.q}</b><br>الجواب الصحيح: ${a.right}</p>`
+ ).join('') || '<p>برافو! جاوبتي على جميع الأسئلة بشكل صحيح.</p>';
+}
+</script>
+</body>
+</html>
