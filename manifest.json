@@ -1,0 +1,21 @@
+{
+  "id": "./",
+  "name": "Arbitre Pro Marocain",
+  "short_name": "Arbitre Pro",
+  "description": "Quiz de lois du football en Darija et en français.",
+  "lang": "fr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#06111f",
+  "theme_color": "#06111f",
+  "icons": [
+    {
+      "src": "app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

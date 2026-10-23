@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#102c49"/>
+      <stop offset="1" stop-color="#030914"/>
+    </linearGradient>
+    <linearGradient id="red" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff4658"/>
+      <stop offset="1" stop-color="#d60027"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <circle cx="256" cy="224" r="132" fill="none" stroke="#ffffff" stroke-width="12" opacity=".18"/>
+  <path d="M256 117l43 31-16 51h-54l-16-51z M171 178l43 21 6 52-42 26-43-34 8-49z M341 178l28 16 8 49-43 34-42-26 6-52z M201 291l43-27h24l43 27-16 49h-78z" fill="#f7fbff"/>
+  <path d="M256 117l43 31-16 51h-54l-16-51z M171 178l43 21 6 52-42 26-43-34 8-49z M341 178l28 16 8 49-43 34-42-26 6-52z M201 291l43-27h24l43 27-16 49h-78z" fill="#06111f" stroke="#06111f" stroke-width="6"/>
+  <path d="M105 389h302" stroke="url(#red)" stroke-width="18" stroke-linecap="round"/>
+  <text x="256" y="443" font-family="Arial,sans-serif" font-size="39" font-weight="800" fill="#fff" text-anchor="middle">ARBITRE</text>
+</svg>

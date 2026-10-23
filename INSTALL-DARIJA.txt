@@ -1,0 +1,51 @@
+ARBITRE PRO — ملفات التحويل إلى تطبيق قابل للتثبيت
+=================================================
+
+هاد الحزمة فيها ملفات إضافية فقط. ما فيهاش index.html ديالك باش ما نبدلوش الأسئلة الموجودة.
+
+الملفات:
+- app.css: تصميم جديد ومتجاوب مع الهاتف والتابليت.
+- manifest.json: معلومات التطبيق باش يقدر يتثبت.
+- sw.js: كاش أساسي باش يفتح التطبيق بسرعة، وبعض المحتوى يقدر يبقى متاح بلا إنترنت بعد أول زيارة.
+- app-icon.svg: أيقونة التطبيق.
+
+مهم: خاصك تزيد 3 أسطر فـ index.html وتزيد ملفّات الحزمة لجذر المشروع على GitHub.
+
+الخطوة 1 — ارفع الملفات
+1. حلّ المشروع: https://github.com/adambourkkadi1234-cmyk/Arbitre-questions
+2. فكّ الضغط على ZIP.
+3. Upload files، ورفع هاد الملفات الأربعة لجذر المشروع (نفس المكان اللي فيه index.html وreferee-banner.png).
+4. دير Commit changes.
+
+الخطوة 2 — اربط التصميم وملف التثبيت
+1. حلّ index.html واضغط Edit.
+2. قلب على السطر: <meta name="viewport" content="width=device-width, initial-scale=1.0">
+3. زيد مباشرة من تحته هاد السطرين:
+<link rel="manifest" href="./manifest.json">
+<link rel="stylesheet" href="./app.css">
+
+الخطوة 3 — فعّل Service Worker
+1. هبط لآخر index.html.
+2. قبل </body> مباشرة، زيد:
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js").catch(console.error);
+  });
+}
+</script>
+
+3. تأكد أن الكود جا قبل </body>، ماشي داخل <script> القديم.
+4. Commit changes.
+
+الخطوة 4 — جرّب
+- افتح: https://adambourkkadi1234-cmyk.github.io/Arbitre-questions/
+- دير Refresh.
+- فـ Chrome على Android، حلّ القائمة ⋮ وشوف واش كاين Install app أو Add to Home screen.
+- إلا ما بانش الخيار مباشرة، سدّ الصفحة وعاود حلّها من بعد شوية.
+
+ملاحظات:
+- خاص GitHub Pages يكون خدام على HTTPS (الرابط الحالي ديالك HTTPS).
+- أول زيارة خاصها إنترنت باش تحمل الملفات.
+- هاد الحزمة ما كتبدلش الأسئلة أو أجوبتها.
+- خدمة العمل بلا إنترنت محدودة بملفات الكاش، وماشي ضمان أن كل شيء غادي يخدم بلا اتصال.
